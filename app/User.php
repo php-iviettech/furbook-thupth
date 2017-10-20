@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Furbook;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function scopeGmail($query)
+    {
+        $query->where('email','like','%gmail%');
+    }
+    public function scopeEmail($query)
+    {
+        $query->where('email','like',"%email%");
+    }
 }

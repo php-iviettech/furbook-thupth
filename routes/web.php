@@ -12,5 +12,23 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'hellophp';
 });
+
+Route::get('about', function (){
+    $crop = 'iviettech';
+    return view('about',['crop'=> $crop]);
+});
+Route::get('/breed/{name}', function ($name){
+    $breed = Furbook\Breed::with('cats')
+    ->whereName($name)
+        ->first();
+    //dd($breed);
+    return view('cats.index' )
+        ->with('breed', $breed)
+        ->with('cats',$breed->cats);
+
+
+});
+
+Route::resource('cats','CatController');
