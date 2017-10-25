@@ -35,4 +35,10 @@ class User extends Authenticatable
     {
         $query->where('email','like',"%email%");
     }
+    public function roles(){
+        return $this->belongsToMany('Furbook\Role');
+    }
+    public function orderitems(){
+        return $this->hasManyThrough('Furbook\OrderItem','Furbook\Order');
+    }
 }

@@ -4,7 +4,7 @@ namespace Furbook\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-
+use Furbook\User;
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -26,7 +26,11 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
+        User::observe(UserObserver::class);
+//        User::creating(function ($user){
+//           // dd($user) ;
+//            $user->password=bcrypt($user->password);
+//        });
         //
     }
 }

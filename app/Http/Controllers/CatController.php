@@ -3,6 +3,10 @@
 namespace Furbook\Http\Controllers;
 use Illuminate\Http\Request;
 use Furbook\Cat;
+use Furbook\User;
+//use Furbook\Role;
+use Furbook\Post;
+use Furbook\Article;
 use DB;
 
 class CatController extends Controller
@@ -14,8 +18,26 @@ class CatController extends Controller
      */
     //Saving data method firstOrCreate kiem tra du lieu truoc khi cho vao
     public function index(){
-        $user = User::Email('gmail')->get();
+
+        $user = User::create([
+            'name'=>'Model event',
+            'email'=>'model.event@gmail.com',
+            'password'=>'12345'
+        ]);
         dd($user);
+
+//        $article = Article::with('images')->find(1);
+//
+//        dd($article->images);
+
+//        $post = Post::with('images')->find(1);
+//
+//        dd($post->images);
+//        $user = User::with('roles')->find(1);
+//
+//        $user->roles()->attach([1,2]);
+//        dd($user->roles);
+        //
         $cat = Cat::firstOrCreate([
             dd(Cat::withTrashed()->get),
             'name' => 'Tom firsOrCreate',
